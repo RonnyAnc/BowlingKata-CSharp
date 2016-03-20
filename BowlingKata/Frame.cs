@@ -2,7 +2,9 @@ namespace BowlingKata
 {
 	public class Frame
 	{
-		private Roll FirstRoll { get; }
+	    private const int SparePunctuation = 10;
+
+	    private Roll FirstRoll { get; }
 		private Roll SecondRoll { get; }
 	    public Frame Next { get; set; }
 
@@ -14,9 +16,19 @@ namespace BowlingKata
 
 		public int Score()
 		{
-			if (SecondRoll == Roll.Spare) return 10 + (int) Next.FirstRoll;
+			if (IsSpare()) return SparePunctuation + GetNextRollPins();
 			return (int) FirstRoll + (int) SecondRoll;
-		}
+		}                                                  
+
+	    private bool IsSpare()
+	    {
+	        return SecondRoll == Roll.Spare;
+	    }
+
+	    private int GetNextRollPins()
+	    {
+	        return (int) Next.FirstRoll;
+	    }
 
 	    public bool HasNext()
 	    {
