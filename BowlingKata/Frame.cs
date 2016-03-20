@@ -3,6 +3,7 @@ namespace BowlingKata
 	public class Frame
 	{
 	    private const int SparePunctuation = 10;
+	    private const int StrikeBasePunctuation = 10;
 
 	    private Roll FirstRoll { get; }
 		private Roll SecondRoll { get; }
@@ -16,10 +17,25 @@ namespace BowlingKata
 
 		public int Score()
 		{
-		    if (FirstRoll == Roll.Strike) return 10 + GetNextRollPins() + (int) Next.SecondRoll;
+		    if (IsStrike()) return StrikeBasePunctuation + GetTwoNextRollsPins();
 			if (IsSpare()) return SparePunctuation + GetNextRollPins();
 			return (int) FirstRoll + (int) SecondRoll;
-		}                                                  
+		}
+
+	    private int GetTwoNextRollsPins()
+	    {
+	        return GetNextRollPins() + GetNextToNextRollPins();
+	    }
+
+	    private int GetNextToNextRollPins()
+	    {
+	        return (int) Next.SecondRoll;
+	    }
+
+	    private bool IsStrike()
+	    {
+	        return FirstRoll == Roll.Strike;
+	    }
 
 	    private bool IsSpare()
 	    {
