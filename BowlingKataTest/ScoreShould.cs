@@ -37,7 +37,7 @@ namespace BowlingKataTest
 		public void sum_rolls_when_there_is_a_spare_followed_by_non_zero_rolls()
 		{
 			var score = CalculateScore("5321----------------");
-			score.Should().Be(12);
+			score.Should().Be(11);
 		}
 		
 		private static int CalculateScore(string line)

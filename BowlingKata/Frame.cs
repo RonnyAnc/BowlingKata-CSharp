@@ -4,8 +4,9 @@ namespace BowlingKata
 	{
 		private Roll FirstRoll { get; }
 		private Roll SecondRoll { get; }
+	    public Frame Next { get; set; }
 
-		public Frame(Roll firstRoll, Roll secondRoll)
+	    public Frame(Roll firstRoll, Roll secondRoll)
 		{
 			FirstRoll = firstRoll;
 			SecondRoll = secondRoll;

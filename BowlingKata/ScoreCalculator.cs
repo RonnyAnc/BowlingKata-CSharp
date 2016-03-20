@@ -15,7 +15,9 @@ namespace BowlingKata
 		private Frame GetFramesFrom(char[] line)
 		{
 			var rolls = RollsFrom(line);
-			return new Frame(rolls[0], rolls[1]);
+			var frame = new Frame(rolls[0], rolls[1]);
+            frame.Next = new Frame(rolls[2], rolls[3]);
+		    return frame;
 		}
 
 		private List<Roll> RollsFrom(char[] line)
@@ -33,7 +35,7 @@ namespace BowlingKata
 
 		public int CalculateScore()
 		{
-			return Frame.Score();
+			return Frame.Score() + Frame.Next.Score();
 		}
 	}
 }
