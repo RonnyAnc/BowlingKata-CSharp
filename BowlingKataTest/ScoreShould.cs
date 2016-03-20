@@ -20,8 +20,8 @@ namespace BowlingKataTest
         [Test]
         public void sum_rolls_when_there_are_more_than_one_frame()
         {
-            var score = CalculateScore("5321----------------");
-            score.Should().Be(11);
+            var score = CalculateScore("53211---------------");
+            score.Should().Be(12);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace BowlingKataTest
         [Test]
         public void calculate_a_strike_frame_score_using_two_next_roll()
         {
-            var score = CalculateScore("X53-----------------");
+            var score = CalculateScore("X53----------------");
             score.Should().Be(26);
         }
 
