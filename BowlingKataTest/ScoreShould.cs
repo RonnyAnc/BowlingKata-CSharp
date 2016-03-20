@@ -19,30 +19,30 @@ namespace BowlingKataTest
 	[TestFixture]
 	class ScoreShould
 	{
-		[Test]
-		public void sum_rolls_when_no_special_frame()
-		{
-			var score = CalculateScore("53------------------");
-			score.Should().Be(8);
-		}
+        [Test]
+        public void sum_rolls_when_there_are_more_than_one_frame()
+        {
+            var score = CalculateScore("5321----------------");
+            score.Should().Be(11);
+        }
 
-		[Test]
+        [Test]
 		public void sum_rolls_when_there_is_a_spare()
 		{
 			var score = CalculateScore("5/------------------");
 			score.Should().Be(10);
 		}
 
-		[Test]
-		public void sum_rolls_when_there_is_a_spare_followed_by_non_zero_rolls()
+        [Test]
+		public void sum_rolls_when_there_is_a_strike()
 		{
-			var score = CalculateScore("5321----------------");
-			score.Should().Be(11);
+			var score = CalculateScore("X------------------");
+			score.Should().Be(10);
 		}
 		
 		private static int CalculateScore(string line)
 		{
 			return new ScoreCalculator(line.ToCharArray()).CalculateScore();
-		}
+		}                  
 	}
 }
