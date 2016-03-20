@@ -17,5 +17,10 @@ namespace BowlingKata
 			if (SecondRoll == Roll.Spare) return 10;
 			return (int) FirstRoll + (int) SecondRoll;
 		}
+
+	    public bool HasNext()
+	    {
+	        return Next != null;
+	    }
 	}
 }

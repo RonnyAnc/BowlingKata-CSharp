@@ -5,9 +5,9 @@ namespace BowlingKata
 {
 	public class ScoreCalculator
 	{
-		private Frame Frame { get; }
+		private Frame Frame { get; set; }
 
-		public ScoreCalculator(char[] line)
+	    public ScoreCalculator(char[] line)
 		{
 			Frame = GetFramesFrom(line);
 		}
@@ -35,7 +35,13 @@ namespace BowlingKata
 
 		public int CalculateScore()
 		{
-			return Frame.Score() + Frame.Next.Score();
+            var score = Frame.Score();
+            while (Frame.HasNext())
+		    {
+                Frame = Frame.Next;
+                score += Frame.Score();
+		    }
+		    return score;
 		}
 	}
 }
