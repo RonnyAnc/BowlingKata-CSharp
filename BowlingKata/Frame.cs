@@ -16,6 +16,7 @@ namespace BowlingKata
 
 		public int Score()
 		{
+		    if (FirstRoll == Roll.Strike) return 10 + GetNextRollPins() + (int) Next.SecondRoll;
 			if (IsSpare()) return SparePunctuation + GetNextRollPins();
 			return (int) FirstRoll + (int) SecondRoll;
 		}                                                  

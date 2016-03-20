@@ -15,8 +15,18 @@ namespace BowlingKata
 		private Frame GetFramesFrom(char[] line)
 		{
 			var rolls = RollsFrom(line);
-			var frame = new Frame(rolls[0], rolls[1]);
-            frame.Next = new Frame(rolls[2], rolls[3]);
+		    Frame frame;
+		    if (rolls[0] == Roll.Strike)
+		    {
+		        frame = new Frame(Roll.Strike, Roll.Zero);
+                frame.Next = new Frame(rolls[1], rolls[2]);
+            }
+			else
+		    {
+		        frame = new Frame(rolls[0], rolls[1]);
+                frame.Next = new Frame(rolls[2], rolls[3]);
+            }
+            
 		    return frame;
 		}
 
