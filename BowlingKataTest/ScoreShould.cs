@@ -3,7 +3,6 @@ using FluentAssertions;
 using NUnit.Framework;
 
 /* TODO
-	- (X------------------) -> 10
 	- (5/1-----------------) -> 12
 	- (X53-----------------) -> 26
 	- (XX----------------) -> 30
@@ -38,6 +37,13 @@ namespace BowlingKataTest
 		{
 			var score = CalculateScore("X------------------");
 			score.Should().Be(10);
+		}
+
+        [Test]
+		public void calculate_a_spare_frame_score_using_next_roll()
+		{
+			var score = CalculateScore("5/1-----------------");
+			score.Should().Be(12);
 		}
 		
 		private static int CalculateScore(string line)
