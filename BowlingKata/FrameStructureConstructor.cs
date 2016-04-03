@@ -6,7 +6,7 @@ namespace BowlingKata
     {
         public Frame ConstructFrames(List<Roll> rolls, int index)
         {
-            if (index == rolls.Count - 3 && rolls[index] == Roll.Strike)
+            if (index == rolls.Count - 3 && (rolls[index] == Roll.Strike || rolls[index + 1] == Roll.Spare))
             {
                 return new LastFrame(rolls[index], rolls[index + 1], rolls[index + 2]);
             }

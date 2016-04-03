@@ -38,7 +38,7 @@ namespace BowlingKata
 	        return FirstRoll == Roll.Strike;
 	    }
 
-	    private bool IsSpare()
+	    protected bool IsSpare()
 	    {
 	        return SecondRoll == Roll.Spare;
 	    }

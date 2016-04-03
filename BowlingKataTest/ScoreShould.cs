@@ -3,7 +3,6 @@ using FluentAssertions;
 using NUnit.Framework;
 
 /* TODO
-	- (-------------------XXX) -> 30
 	- (-------------------5/5) -> 15
 	- (5/5/5/5/5/5/5/5/5/5/5) -> 150
 	- (XXXXXXXXXXXX) -> 300
@@ -53,6 +52,12 @@ namespace BowlingKataTest
 	    public void all_strikes_in_the_last_frame()
 	    {
 	        CalculateScore("------------------XXX").Should().Be(30);
+	    }
+
+        [Test]
+	    public void a_spare_in_the_last_frame()
+	    {
+	        CalculateScore("------------------5/5").Should().Be(15);
 	    }
 
         private static int CalculateScore(string line)

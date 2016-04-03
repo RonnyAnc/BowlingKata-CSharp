@@ -10,6 +10,7 @@ namespace BowlingKata
 
         public override int Score()
         {
+            if (IsSpare()) return 10 + (int) ThirdRoll; 
             return (int) FirstRoll + (int) SecondRoll + (int) ThirdRoll;
         }
     }
