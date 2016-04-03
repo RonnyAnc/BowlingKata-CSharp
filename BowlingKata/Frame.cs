@@ -15,7 +15,13 @@ namespace BowlingKata
 			SecondRoll = secondRoll;
 		}
 
-		protected virtual int CalculateScore()
+	    public int GetScore()
+	    {
+	        if (DoesNotHaveNext()) return CalculateScore();
+	        return CalculateScore() + Next.GetScore();
+	    }
+
+	    protected virtual int CalculateScore()
 		{
 		    if (IsStrike()) return StrikeBasePunctuation + GetTwoNextRollsPins();
 			if (IsSpare()) return SpareBasePunctuation + GetNextRollPins();
@@ -54,10 +60,9 @@ namespace BowlingKata
 	        return Next != null;
 	    }
 
-	    public int GetScore()
+	    private bool DoesNotHaveNext()
 	    {
-	        if (!HasNext()) return CalculateScore();
-	        return CalculateScore() + Next.GetScore();
+	        return !HasNext();
 	    }
 	}
 }
