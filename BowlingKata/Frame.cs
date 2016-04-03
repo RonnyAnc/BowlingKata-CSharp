@@ -30,7 +30,7 @@ namespace BowlingKata
 
 	    private int GetNextToNextRollPins()
 	    {
-	        if (Next.Next == null) return Next.SecondRoll.Value();
+	        if (Next.DoesNotHaveNext()) return Next.SecondRoll.Value();
 	        if (Next.IsStrike()) return Next.Next.FirstRoll.Value();
 	        return Next.SecondRoll.Value();
 	    }
