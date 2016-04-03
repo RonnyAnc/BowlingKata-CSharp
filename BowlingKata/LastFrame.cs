@@ -3,14 +3,15 @@ namespace BowlingKata
     internal class LastFrame : Frame
     {
         private Roll ThirdRoll { get; }
-        public LastFrame(params Roll[] rolls) : base(rolls[0], rolls[1])
+
+        public LastFrame(Roll firstRoll, Roll secondRoll, Roll thirdRoll) : base(firstRoll, secondRoll)
         {
-            ThirdRoll = rolls[2];
+            ThirdRoll = thirdRoll;
         }
 
         protected override int CalculateScore()
         {
-            if (IsSpare()) return 10 + (int) ThirdRoll; 
+            if (IsSpare()) return SpareBasePunctuation + (int) ThirdRoll; 
             return (int) FirstRoll + (int) SecondRoll + (int) ThirdRoll;
         }
     }

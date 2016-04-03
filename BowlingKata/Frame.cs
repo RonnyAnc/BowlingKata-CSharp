@@ -2,7 +2,7 @@ namespace BowlingKata
 {
 	public class Frame
 	{
-	    private const int SpareBasePunctuation = 10;
+	    protected const int SpareBasePunctuation = 10;
 	    private const int StrikeBasePunctuation = 10;
 
 	    protected Roll FirstRoll { get; }
