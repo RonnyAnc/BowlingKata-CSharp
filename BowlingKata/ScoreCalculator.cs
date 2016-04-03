@@ -6,19 +6,17 @@ namespace BowlingKata
 {
 	public class ScoreCalculator
 	{
-		private Frame Frame { get; set; }
-	    private FrameStructureConstructor constructor;
+		private Frame Frame { get; }
 
 	    public ScoreCalculator(char[] line)
 		{
-            constructor = new FrameStructureConstructor();
             Frame = GetFramesFrom(line);
 		}
 
 		private Frame GetFramesFrom(char[] line)
 		{
 			var rolls = RollsFrom(line);
-		    Frame frame = constructor.ConstructFrames(rolls, 0);
+		    Frame frame = FrameStructureConstructor.ConstructFrames(rolls, 0);
 		    return frame;
 		}
 

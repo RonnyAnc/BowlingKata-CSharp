@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace BowlingKata
 {
-    internal class FrameStructureConstructor
+    internal static class FrameStructureConstructor
     {
-        public Frame ConstructFrames(List<Roll> rolls, int index)
+        public static Frame ConstructFrames(List<Roll> rolls, int index)
         {
             if (index == rolls.Count - 3 && (rolls[index] == Roll.Strike || rolls[index + 1] == Roll.Spare))
             {
@@ -15,14 +15,14 @@ namespace BowlingKata
             return NormalFrame(rolls, index);
         }
 
-        private Frame NormalFrame(List<Roll> rolls, int index)
+        private static Frame NormalFrame(List<Roll> rolls, int index)
         {
             var frame = new Frame(rolls[index], rolls[index + 1]);
             frame.Next = ConstructFrames(rolls, index + 2);
             return frame;
         }
 
-        private Frame StrikeFrame(List<Roll> rolls, int index)
+        private static Frame StrikeFrame(List<Roll> rolls, int index)
         {
             var frame = new Frame(Roll.Strike, Roll.Zero);
             frame.Next = ConstructFrames(rolls, index + 1);
