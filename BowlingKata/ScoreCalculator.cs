@@ -12,16 +12,13 @@ namespace BowlingKata
             Frame = GetFramesFrom(line);
 		}
 
-		private static Frame GetFramesFrom(IEnumerable<char> line)
+	    private static Frame GetFramesFrom(IEnumerable<char> line)
 		{
 		    var rolls = Rolls.From(line);
 		    return Frames.From(rolls, 0);
 		}
 
-	    public int CalculateScore()
-		{
-		    return Frame.GetScore();
-		}
+	    public int CalculateScore() => Frame.GetScore();
 	}
 }
 
