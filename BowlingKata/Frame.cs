@@ -28,11 +28,6 @@ namespace BowlingKata
 			return (int) FirstRoll + (int) SecondRoll;
 		}
 
-	    private int GetTwoNextRollsPins()
-	    {
-	        return GetNextRollPins() + GetNextToNextRollPins();
-	    }
-
 	    protected virtual int GetNextToNextRollPins()
 	    {
 	        if (Next.Next == null) return (int) Next.SecondRoll;
@@ -40,29 +35,16 @@ namespace BowlingKata
 	        return (int) Next.SecondRoll;
 	    }
 
-	    private bool IsStrike()
-	    {
-	        return FirstRoll == Roll.Strike;
-	    }
+	    private int GetTwoNextRollsPins() => GetNextRollPins() + GetNextToNextRollPins();
 
-	    protected bool IsSpare()
-	    {
-	        return SecondRoll == Roll.Spare;
-	    }
+	    private bool IsStrike() => FirstRoll == Roll.Strike;
 
-	    private int GetNextRollPins()
-	    {
-	        return (int) Next.FirstRoll;
-	    }
+	    protected bool IsSpare() => SecondRoll == Roll.Spare;
 
-	    private bool HasNext()
-	    {
-	        return Next != null;
-	    }
+	    private int GetNextRollPins() => (int) Next.FirstRoll;
 
-	    private bool DoesNotHaveNext()
-	    {
-	        return !HasNext();
-	    }
+	    private bool HasNext() => Next != null;
+
+	    private bool DoesNotHaveNext() => !HasNext();
 	}
 }
