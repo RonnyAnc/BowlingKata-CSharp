@@ -37,11 +37,11 @@ namespace BowlingKata
 
 	    private int GetTwoNextRollsPins() => GetNextRollPins() + GetNextToNextRollPins();
 
-	    private bool IsStrike() => FirstRoll == Roll.Strike;
+	    private int GetNextRollPins() => (int) Next.FirstRoll;
+
+        private bool IsStrike() => FirstRoll == Roll.Strike;
 
 	    protected bool IsSpare() => SecondRoll == Roll.Spare;
-
-	    private int GetNextRollPins() => (int) Next.FirstRoll;
 
 	    private bool HasNext() => Next != null;
 
