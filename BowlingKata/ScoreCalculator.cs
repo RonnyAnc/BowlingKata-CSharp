@@ -16,8 +16,7 @@ namespace BowlingKata
 		private Frame GetFramesFrom(char[] line)
 		{
 			var rolls = RollsFrom(line);
-		    Frame frame = FrameStructureConstructor.ConstructFrames(rolls, 0);
-		    return frame;
+		    return FramesConstructor.Construct(rolls, 0);
 		}
 
 	    private List<Roll> RollsFrom(char[] line)

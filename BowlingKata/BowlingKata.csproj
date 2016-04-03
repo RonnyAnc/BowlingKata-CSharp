@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Frame.cs" />
-    <Compile Include="FrameStructureConstructor.cs" />
+    <Compile Include="FramesConstructor.cs" />
     <Compile Include="LastFrame.cs" />
     <Compile Include="MyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
