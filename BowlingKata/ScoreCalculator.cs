@@ -15,7 +15,7 @@ namespace BowlingKata
 		private static Frame GetFramesFrom(IEnumerable<char> line)
 		{
 		    var rolls = Rolls.From(line);
-		    return FramesConstructor.Construct(rolls, 0);
+		    return Frames.From(rolls, 0);
 		}
 
 	    public int CalculateScore()
