@@ -43,6 +43,7 @@
     <Compile Include="Frame.cs" />
     <Compile Include="FramesConstructor.cs" />
     <Compile Include="LastFrame.cs" />
+    <Compile Include="Rolls.cs" />
     <Compile Include="MyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roll.cs" />

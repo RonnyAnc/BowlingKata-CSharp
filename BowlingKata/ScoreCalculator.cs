@@ -1,6 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using static BowlingKata.Roll;
 
 namespace BowlingKata
 {
@@ -8,31 +7,18 @@ namespace BowlingKata
 	{
 		private Frame Frame { get; }
 
-	    public ScoreCalculator(char[] line)
+	    public ScoreCalculator(IEnumerable<char> line)
 		{
             Frame = GetFramesFrom(line);
 		}
 
-		private Frame GetFramesFrom(char[] line)
+		private static Frame GetFramesFrom(IEnumerable<char> line)
 		{
-			var rolls = RollsFrom(line);
+		    var rolls = Rolls.From(line);
 		    return FramesConstructor.Construct(rolls, 0);
 		}
 
-	    private List<Roll> RollsFrom(char[] line)
-		{
-			return line.Map(ToRoll).ToList();
-		}
-
-		private Roll ToRoll(char character)
-		{
-			if (character == '-') return Zero;
-			if (character == '/') return Spare;
-			if (character == 'X') return Strike;
-			return (Roll) int.Parse(character.ToString());
-		}
-
-		public int CalculateScore()
+	    public int CalculateScore()
 		{
 		    return Frame.GetScore();
 		}
