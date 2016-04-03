@@ -6,7 +6,7 @@ namespace BowlingKata
 	    private const int StrikeBasePunctuation = 10;
 
 	    protected Roll FirstRoll { get; }
-		private Roll SecondRoll { get; }
+		protected Roll SecondRoll { get; }
 	    public Frame Next { get; set; }
 
 	    public Frame(Roll firstRoll, Roll secondRoll)
@@ -15,7 +15,7 @@ namespace BowlingKata
 			SecondRoll = secondRoll;
 		}
 
-		public int Score()
+		public virtual int Score()
 		{
 		    if (IsStrike()) return StrikeBasePunctuation + GetTwoNextRollsPins();
 			if (IsSpare()) return SpareBasePunctuation + GetNextRollPins();
