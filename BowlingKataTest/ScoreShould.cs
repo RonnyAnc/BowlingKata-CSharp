@@ -2,42 +2,33 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-/* TODO
-	- (5/5/5/5/5/5/5/5/5/5/5) -> 150
-	- (XXXXXXXXXXXX) -> 300
-*/
-
 namespace BowlingKataTest
 {
 	[TestFixture]
-	class ScoreShould
+	internal class ScoreShould
 	{
         [Test]
         public void sum_rolls_when_there_are_more_than_one_frame()
         {
-            var score = CalculateScore("53211---------------");
-            score.Should().Be(12);
+            CalculateScore("53211---------------").Should().Be(12);
         }
 
         [Test]
 		public void sum_rolls_when_there_is_a_spare()
 		{
-			var score = CalculateScore("5/------------------");
-			score.Should().Be(10);
+            CalculateScore("5/------------------").Should().Be(10);
 		}
 
         [Test]
 		public void sum_rolls_when_there_is_a_strike()
 		{
-			var score = CalculateScore("X------------------");
-			score.Should().Be(10);
+            CalculateScore("X------------------").Should().Be(10);
 		}
 
         [Test]
 		public void calculate_a_spare_frame_score_using_next_roll()
 		{
-			var score = CalculateScore("5/1-----------------");
-			score.Should().Be(12);
+            CalculateScore("5/1-----------------").Should().Be(12);
 		}
 
         [Test]

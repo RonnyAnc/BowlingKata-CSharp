@@ -28,7 +28,7 @@ namespace BowlingKata
 			return FirstRoll.Value() + SecondRoll.Value();
 		}
 
-	    protected virtual int GetNextToNextRollPins()
+	    private int GetNextToNextRollPins()
 	    {
 	        if (Next.Next == null) return Next.SecondRoll.Value();
 	        if (Next.IsStrike()) return Next.Next.FirstRoll.Value();
