@@ -5,7 +5,7 @@ namespace BowlingKata
 	    private const int SpareBasePunctuation = 10;
 	    private const int StrikeBasePunctuation = 10;
 
-	    private Roll FirstRoll { get; }
+	    protected Roll FirstRoll { get; }
 		private Roll SecondRoll { get; }
 	    public Frame Next { get; set; }
 
@@ -27,8 +27,9 @@ namespace BowlingKata
 	        return GetNextRollPins() + GetNextToNextRollPins();
 	    }
 
-	    private int GetNextToNextRollPins()
+	    protected virtual int GetNextToNextRollPins()
 	    {
+	        if (Next.IsStrike()) return (int) Next.Next.FirstRoll;
 	        return (int) Next.SecondRoll;
 	    }
 
