@@ -37,13 +37,7 @@ namespace BowlingKata
 
 		public int CalculateScore()
 		{
-            var score = Frame.Score();
-            while (Frame.HasNext())
-		    {
-                Frame = Frame.Next;
-                score += Frame.Score();
-		    }
-		    return score;
+		    return Frame.GetScore();
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace BowlingKata
             ThirdRoll = rolls[2];
         }
 
-        public override int Score()
+        protected override int CalculateScore()
         {
             if (IsSpare()) return 10 + (int) ThirdRoll; 
             return (int) FirstRoll + (int) SecondRoll + (int) ThirdRoll;
