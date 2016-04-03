@@ -25,19 +25,19 @@ namespace BowlingKata
 		{
 		    if (IsStrike()) return StrikeBasePunctuation + GetTwoNextRollsPins();
 			if (IsSpare()) return SpareBasePunctuation + GetNextRollPins();
-			return (int) FirstRoll + (int) SecondRoll;
+			return FirstRoll.Value() + SecondRoll.Value();
 		}
 
 	    protected virtual int GetNextToNextRollPins()
 	    {
-	        if (Next.Next == null) return (int) Next.SecondRoll;
-	        if (Next.IsStrike()) return (int) Next.Next.FirstRoll;
-	        return (int) Next.SecondRoll;
+	        if (Next.Next == null) return Next.SecondRoll.Value();
+	        if (Next.IsStrike()) return Next.Next.FirstRoll.Value();
+	        return Next.SecondRoll.Value();
 	    }
 
 	    private int GetTwoNextRollsPins() => GetNextRollPins() + GetNextToNextRollPins();
 
-	    private int GetNextRollPins() => (int) Next.FirstRoll;
+	    private int GetNextRollPins() => Next.FirstRoll.Value();
 
         private bool IsStrike() => FirstRoll == Roll.Strike;
 
