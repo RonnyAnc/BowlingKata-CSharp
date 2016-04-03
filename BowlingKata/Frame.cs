@@ -23,21 +23,21 @@ namespace BowlingKata
 
 	    protected virtual int CalculateScore()
 		{
-		    if (IsStrike()) return StrikeBasePunctuation + GetTwoNextRollsPins();
-			if (IsSpare()) return SpareBasePunctuation + GetNextRollPins();
+		    if (IsStrike()) return StrikeBasePunctuation + TwoNextRollsPins();
+			if (IsSpare()) return SpareBasePunctuation + NextRollPins();
 			return FirstRoll.Value() + SecondRoll.Value();
 		}
 
 	    private int GetNextToNextRollPins()
 	    {
-	        if (Next.DoesNotHaveNext()) return Next.SecondRoll.Value();
-	        if (Next.IsStrike()) return Next.Next.FirstRoll.Value();
+	        if (Next.IsStrike() && Next.HasNext())
+                return Next.Next.FirstRoll.Value();
 	        return Next.SecondRoll.Value();
 	    }
 
-	    private int GetTwoNextRollsPins() => GetNextRollPins() + GetNextToNextRollPins();
+	    private int TwoNextRollsPins() => NextRollPins() + GetNextToNextRollPins();
 
-	    private int GetNextRollPins() => Next.FirstRoll.Value();
+	    private int NextRollPins() => Next.FirstRoll.Value();
 
         private bool IsStrike() => FirstRoll == Roll.Strike;
 
