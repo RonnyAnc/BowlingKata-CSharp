@@ -11,8 +11,8 @@ namespace BowlingKata
 
         protected override int CalculateScore()
         {
-            if (IsSpare()) return SpareBasePunctuation + (int) ThirdRoll; 
-            return (int) FirstRoll + (int) SecondRoll + (int) ThirdRoll;
+            if (IsSpare()) return SpareBasePunctuation + ThirdRoll.Value(); 
+            return FirstRoll.Value() + SecondRoll.Value() + ThirdRoll.Value();
         }
     }
 }
