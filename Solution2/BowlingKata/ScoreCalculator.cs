@@ -16,6 +16,7 @@ namespace BowlingKata
         {
             if (line[index] == '-') return 0;
             if (line[index] == '/') return 10 - ToValue(line, index - 1);
+            if (line[index] == 'X') return 10;
             return int.Parse(line[index].ToString());
         }
     }
