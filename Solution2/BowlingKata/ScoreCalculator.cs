@@ -7,19 +7,19 @@ namespace BowlingKata
     {
         public static int CalculateScore(string line)
         {
-            var multiplier = 1;
+            var multiplier = new Multiplier();
             var score = line.Select((roll, index) =>
             {
-                var rollScore = ToValue(line, index) * multiplier;
+                var rollScore = multiplier.Apply(ToValue(line, index));
                 multiplier = GetNextMultiplierFor(roll);
                 return rollScore;
             }).Sum();
             return score;
         }
 
-        private static int GetNextMultiplierFor(char r)
+        private static Multiplier GetNextMultiplierFor(char roll)
         {
-            return r == '/' ? 2 : 1;
+            return roll == '/' ? new Multiplier(2) : new Multiplier();
         }
 
         private static int ToValue(string line, int index)
@@ -28,6 +28,24 @@ namespace BowlingKata
             if (line[index] == '/') return 10 - ToValue(line, index - 1);
             if (line[index] == 'X') return 10;
             return int.Parse(line[index].ToString());
+        }
+    }
+
+    public class Multiplier
+    {
+        public int Value { get; }
+        public int Charge { get; private set; }
+
+        public Multiplier(int value = 1, int charge = 1)
+        {
+            Value = value;
+            Charge = charge;
+        }
+
+        public int Apply(int value)
+        {
+            Charge -= 1;
+            return value * Value;
         }
     }
 }
