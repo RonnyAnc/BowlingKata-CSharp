@@ -8,13 +8,18 @@ namespace BowlingKata
         public static int CalculateScore(string line)
         {
             var multiplier = 1;
-            var score = line.Select((r, index) =>
+            var score = line.Select((roll, index) =>
             {
                 var rollScore = ToValue(line, index) * multiplier;
-                multiplier = r == '/' ? 2 : 1;
+                multiplier = GetNextMultiplierFor(roll);
                 return rollScore;
             }).Sum();
             return score;
+        }
+
+        private static int GetNextMultiplierFor(char r)
+        {
+            return r == '/' ? 2 : 1;
         }
 
         private static int ToValue(string line, int index)
