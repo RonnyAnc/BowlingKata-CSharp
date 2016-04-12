@@ -8,7 +8,12 @@ namespace BowlingKata
         public static int CalculateScore(string line)
         {
             var multiplier = 1;
-            var score = line.Select((r, index) => ToValue(line, index)).Sum();
+            var score = line.Select((r, index) =>
+            {
+                var rollScore = ToValue(line, index) * multiplier;
+                multiplier = r == '/' ? 2 : 1;
+                return rollScore;
+            }).Sum();
             return score;
         }
 
