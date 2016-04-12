@@ -1,22 +1,22 @@
-﻿namespace BowlingKata
+﻿using System.Linq;
+using System.Runtime.Remoting.Messaging;
+
+namespace BowlingKata
 {
     public class ScoreCalculator
     {
         public static int CalculateScore(string line)
         {
             var multiplier = 1;
-            var score = 0;
-            foreach (var roll in line)
-            {
-                score += ToValue(roll) * multiplier;
-            }
+            var score = line.Select((r, index) => ToValue(line, index)).Sum();
             return score;
         }
 
-        private static int ToValue(char roll)
+        private static int ToValue(string line, int index)
         {
-            if (roll == '-') return 0;
-            return int.Parse(roll.ToString());
+            if (line[index] == '-') return 0;
+            if (line[index] == '/') return 10 - ToValue(line, index - 1);
+            return int.Parse(line[index].ToString());
         }
     }
 }
