@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BowlingKata
 {
@@ -17,25 +18,31 @@ namespace BowlingKata
             
             for (index = 0; index < line.Length; index++)
             {
-                if (line[index] == '/')
-                    ConstructSpare(ToInt(line[index - 1]));
-                else if (line[index] == 'X')
-                    ConstructStrike();
-                else if (line[index] == '-')
-                    rolls[index].Pins = NoPins;
-                else
-                    rolls[index].Pins = ToInt(line[index]);
+                if (line[index] == '/') ConstructSpareRoll(ToInt(line[index - 1]));
+                else if (line[index] == 'X') ConstructStrikeRoll();
+                else if (line[index] == '-') ConstructEmptyRoll();
+                else ConstructStandardRoll(line[index]);
             }
             return rolls;
         }
 
-        private static void ConstructStrike()
+        private static void ConstructStandardRoll(char rollSymbol)
+        {
+            rolls[index].Pins = ToInt(rollSymbol);
+        }
+
+        private static void ConstructEmptyRoll()
+        {
+            rolls[index].Pins = NoPins;
+        }
+
+        private static void ConstructStrikeRoll()
         {
             CurrentRoll.Pins = MaxPins;
             IncrementMultiplierForTwoNextRolls();
         }
 
-        private static void ConstructSpare(int previousPins)
+        private static void ConstructSpareRoll(int previousPins)
         {
             CurrentRoll.Pins = MaxPins - previousPins;
             IncrementMultiplierForNextRoll();
@@ -56,19 +63,14 @@ namespace BowlingKata
                 CurrentRoll.Next.Multiplier += 1;
         }
 
-        private static int ToInt(char roll)
-        {
-            return int.Parse(roll.ToString());
-        }
+        private static int ToInt(char roll) => int.Parse(roll.ToString());
 
         private static Roll[] RollsWithDefaultValues(int size)
         {
-            var rolls = new Roll[size];
-            for (int i = 0; i < rolls.Length; i++)
-            {
-                rolls[i] = new Roll();
-            }
-            for (int i = 0; i < rolls.Length - 1; i++)
+            var rolls = new Roll[size]
+                            .Select(e => new Roll())
+                            .ToArray();
+            for (var i = 0; i < rolls.Length - 1; i++)
             {
                 rolls[i].Next = rolls[i + 1];
             }
