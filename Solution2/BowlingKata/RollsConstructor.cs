@@ -25,10 +25,11 @@ namespace BowlingKata
 
         private static void ConstructCurrentRollIn(string line)
         {
-            if (line[index] == '/') ConstructSpareRoll(ToInt(line[index - 1]));
-            else if (line[index] == 'X') ConstructStrikeRoll();
-            else if (line[index] == '-') ConstructEmptyRoll();
-            else ConstructStandardRoll(line[index]);
+            var rollSymbol = line[index];
+            if (rollSymbol == '/') ConstructSpareRoll(ToInt(line[index - 1]));
+            else if (rollSymbol == 'X') ConstructStrikeRoll();
+            else if (rollSymbol == '-') ConstructEmptyRoll();
+            else ConstructStandardRoll(rollSymbol);
         }
 
         private static void ConstructStandardRoll(char rollSymbol)
@@ -55,17 +56,15 @@ namespace BowlingKata
 
         private static void IncrementMultiplierForTwoNextRolls()
         {
-            if (index < rolls.Length - 3)
-            {
-                CurrentRoll.Next.Multiplier += 1;
-                CurrentRoll.Next.Next.Multiplier += 1;
-            }
+            if (index >= rolls.Length - 3) return;
+            CurrentRoll.Next.Multiplier += 1;
+            CurrentRoll.Next.Next.Multiplier += 1;
         }
 
         private static void IncrementMultiplierForNextRoll()
         {
-            if (index < rolls.Length - 2)
-                CurrentRoll.Next.Multiplier += 1;
+            if (index >= rolls.Length - 2) return;
+            CurrentRoll.Next.Multiplier += 1;
         }
 
         private static int ToInt(char roll) => int.Parse(roll.ToString());
