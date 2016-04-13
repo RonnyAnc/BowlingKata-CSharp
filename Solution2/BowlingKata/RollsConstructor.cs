@@ -16,14 +16,19 @@ namespace BowlingKata
         {
             rolls = RollsWithDefaultValues(line.Length);
             
-            for (index = 0; index < line.Length; index++)
+            for (index = 0; index < rolls.Length; index++)
             {
-                if (line[index] == '/') ConstructSpareRoll(ToInt(line[index - 1]));
-                else if (line[index] == 'X') ConstructStrikeRoll();
-                else if (line[index] == '-') ConstructEmptyRoll();
-                else ConstructStandardRoll(line[index]);
+                ConstructCurrentRollIn(line);
             }
             return rolls;
+        }
+
+        private static void ConstructCurrentRollIn(string line)
+        {
+            if (line[index] == '/') ConstructSpareRoll(ToInt(line[index - 1]));
+            else if (line[index] == 'X') ConstructStrikeRoll();
+            else if (line[index] == '-') ConstructEmptyRoll();
+            else ConstructStandardRoll(line[index]);
         }
 
         private static void ConstructStandardRoll(char rollSymbol)
