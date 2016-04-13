@@ -26,11 +26,28 @@ namespace BowlingKata
         private static void ConstructCurrentRollIn(string line)
         {
             var rollSymbol = line[index];
-            if (rollSymbol == '/') ConstructSpareRoll(ToInt(line[index - 1]));
-            else if (rollSymbol == 'X') ConstructStrikeRoll();
-            else if (rollSymbol == '-') ConstructEmptyRoll();
+            if (IsSpare(rollSymbol)) ConstructSpareRoll(PreviousPins(line));
+            else if (IsStrike(rollSymbol)) ConstructStrikeRoll();
+            else if (IsEmpty(rollSymbol)) ConstructEmptyRoll();
             else ConstructStandardRoll(rollSymbol);
         }
+
+        private static bool IsEmpty(char rollSymbol)
+        {
+            return rollSymbol == '-';
+        }
+
+        private static bool IsStrike(char rollSymbol)
+        {
+            return rollSymbol == 'X';
+        }
+
+        private static bool IsSpare(char rollSymbol)
+        {
+            return rollSymbol == '/';
+        }
+
+        private static int PreviousPins(string line) => ToInt(line[index - 1]);
 
         private static void ConstructStandardRoll(char rollSymbol)
         {
