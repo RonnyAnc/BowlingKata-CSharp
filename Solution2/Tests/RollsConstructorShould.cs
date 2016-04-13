@@ -40,5 +40,22 @@ namespace Tests
 
             rolls[1].Pins.Should().Be(5);
         }
+
+        [Test]
+        public void multiply_by_2_next_of_a_spare()
+        {
+            var rolls = RollsConstructor.Construct("5/3-----------------");
+
+            rolls[2].Multiplier.Should().Be(2);
+        }
+
+        [Test]
+        public void multiply_by_2_next_two_rolls_of_a_strike()
+        {
+            var rolls = RollsConstructor.Construct("X35-----------------");
+
+            rolls[1].Multiplier.Should().Be(2);
+            rolls[2].Multiplier.Should().Be(2);
+        }
     }
 }
