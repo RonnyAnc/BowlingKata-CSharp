@@ -1,16 +1,13 @@
-﻿namespace BowlingKata
+﻿using System.Linq;
+
+namespace BowlingKata
 {
     public class ScoreCalculator
     {
         public static int CalculateScore(string line)
         {
             var rolls = RollsConstructor.Construct(line);
-            var score = 0;
-            for (var i = 0; i < rolls.Length; i++)
-            {
-                score += rolls[i].Pins * rolls[i].Multiplier;
-            }
-            return score;
+            return rolls.Sum(r => r.Pins * r.Multiplier);
         }
     }
 }
