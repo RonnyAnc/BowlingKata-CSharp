@@ -18,8 +18,11 @@ namespace BowlingKata
                 else if (line[i] == 'X')
                 {
                     rolls[i].Pins = 10;
-                    rolls[i + 1].Multiplier += 1;
-                    rolls[i + 2].Multiplier += 1;
+                    if (i < line.Length - 3)
+                    {
+                        rolls[i + 1].Multiplier += 1;
+                        rolls[i + 2].Multiplier += 1;
+                    }
                 }
                 else if (line[i] == '-')
                 {

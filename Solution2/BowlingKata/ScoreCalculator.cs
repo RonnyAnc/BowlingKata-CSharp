@@ -4,8 +4,13 @@
     {
         public static int CalculateScore(string line)
         {
-            var constructor = RollsConstructor.Construct(line);
-            return 0;
+            var rolls = RollsConstructor.Construct(line);
+            var score = 0;
+            for (var i = 0; i < rolls.Length; i++)
+            {
+                score += rolls[i].Pins * rolls[i].Multiplier;
+            }
+            return score;
         }
     }
 }
