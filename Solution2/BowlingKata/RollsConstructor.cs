@@ -15,7 +15,7 @@ namespace BowlingKata
             {
                 if (line[i] == '/')
                 {
-                    rolls[i].Pins = SparePins(line, i);
+                    rolls[i].Pins = MaxPins - ToInt(line[i - 1]);
                     if (i < rolls.Length - 2)
                     {
                         rolls[i + 1].Multiplier += 1;
@@ -40,11 +40,6 @@ namespace BowlingKata
                 }
             }
             return rolls;
-        }
-
-        private static int SparePins(string line, int i)
-        {
-            return MaxPins - ToInt(line[i]);
         }
 
         private static int ToInt(char roll)
